@@ -1,0 +1,440 @@
+// general styles //
+// Color variables ->
+$background-color_1:    white;
+$background_color_2:    #E0E8E6; 
+$primary_color:         #3851bc; 
+$secondary_color_1:     #64bb5d; 
+$secondary_color_2:     #f06060; 
+$color_text_1:          black;
+// flash 
+.notice-alert-session:hover{
+  opacity: 1;
+}
+.notice-alert-session{
+  position: fixed;
+  left: 40px;
+  margin-top: -50px;  
+  margin-right: -170px;
+  top: 140px;
+  z-index: 1000;
+  width: 340px;
+  //height: 100px;
+  border: 1px solid black;
+  background-color: white;
+  border-box: box-sizing;
+  border-radius: 2px; 
+  opacity: .9;
+  padding: 4px 0 8px 0;
+
+  text-align: center;
+  p.notice, p.alert{
+    margin: 15px 0 10px 0;
+    font-size: 20px;
+  }
+
+}
+// data tooltip (explication message) for the toolbar menu "views/menu_bars/_toolbar.html.erb" //
+[data-tooltip] {
+  position: relative;
+  z-index: 20;
+  cursor: pointer;
+}
+/* Hide the tooltip content by default */
+[data-tooltip]:before,
+[data-tooltip]:after {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+/* Position tooltip above the element */
+[data-tooltip]:before {
+  position: absolute;
+  bottom: 150%;
+  left: 50%;
+  margin-bottom: 5px;
+  margin-left: -58px;
+  padding: 7px;
+  width: 100px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  background-color: #000;
+  background-color: hsla(0, 0%, 20%, 0.9);
+  color: #fff;
+  content: attr(data-tooltip);
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.2;
+}
+/* Triangle hack to make tooltip look like a speech bubble */
+[data-tooltip]:after {
+  position: absolute;
+  bottom: 150%;
+  left: 50%;
+  margin-left: -5px;
+  width: 0;
+  border-top: 5px solid #000;
+  border-top: 5px solid hsla(0, 0%, 20%, 0.9);
+  border-right: 5px solid transparent;
+  border-left: 5px solid transparent;
+  content: " ";
+  font-size: 0;
+  line-height: 0;
+}
+/* Show tooltip content on hover */
+[data-tooltip]:hover:before,
+[data-tooltip]:hover:after {
+  visibility: visible;
+  opacity: 1;
+}
+// general
+*{
+	margin: 0;
+	padding: 0; 
+}
+body{
+	margin: 0;
+	padding: 0;
+	font-family: 'font_1';	
+}
+#main_wrapper{
+  background-image: url("./fondoBeo.png");
+  background-color: $background_color_2;
+  min-height: 20000px;
+  width: 100%;
+}
+#inside_main_wrapper{
+  //background-image: url("./fondoBeo.png");
+  background-color: $background_color_2;
+  min-height: 1200px;
+  width: 100%; 
+}
+// menu_bars/_header.html.erb //
+.header{
+  background-color: $background-color_1;
+  box-sizing: border-box;
+  height: 60px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  .menu{
+    display: block;
+    height: 60px;
+    width: 100%;
+    .logo{
+      height: 60px;
+      width: 100%;
+      text-align: center;
+      a{
+        color: $color_text_1;
+        display: block;
+        font-size: 25px;
+        padding-top: 14px;
+        text-decoration: none;
+      }
+    }
+  }
+}
+// new session //
+#new_session{
+  background-image: url("./fondoBeo.png");
+  width: 100%;
+  .new_user_session_form{ 
+    position: fixed;
+    height: 100px;
+    left: 50%;
+    margin-top: -50px;  
+    margin-left: -450px;
+    top: 50%;
+    z-index: 1;
+    box-sizing: border-box;
+    width: 900px;
+    form{
+      display: inline-block;
+      margin: 0 auto;
+      padding: 0;
+      width: 100%;
+      .field{
+        float: left; 
+        margin: 0;
+        width: 40%;
+        input[type="text"], input[type="password"] {
+          background-color: transparent;
+          border: none;
+          border-bottom: 4px solid $color_text_1;
+          color: $color_text_1;
+          display: block;
+          opacity: 0.7;
+          -moz-opacity: 0.7;
+          filter:alpha(opacity=7);
+          border-radius: 2px;
+          box-sizing: border-box;
+          font-size: 26px;
+          height: 100%;
+          margin: 0 auto;
+          padding: 10px;
+          text-align: center;
+          width: 90%;
+        }
+      }
+      .actions{
+        float: left; 
+        height: 100px;
+        margin: 0;
+        width: 20%;
+        input[type="submit"]{
+          background-color: transparent ;
+          border: 4px solid $color_text_1;
+          border-radius: 2px;
+          box-sizing: border-box;
+          color: $color_text_1;
+          cursor: pointer;
+          display: block;
+          font-size: 25px;
+          height: 100%;
+          letter-spacing: 1px;
+          margin: 0 auto;
+          text-align: center;
+          text-decoration: none;
+          width: 90%;
+        }
+        input[type="submit"]:hover{
+          border: 4px solid #BABCBC;
+          color: #BABCBC;
+          -webkit-transition: color 0.2s, border 0.2s;
+          -moz-transition: color 0.2s, border 0.2s;
+          transition: color 0.2s, border 0.2s;
+        }
+      }
+      .nav_options{
+        display: inline-block;
+        margin-top: 50px;
+        text-align: center;
+        width: 100%;
+        a{
+          color: black;
+          font-size: 18px;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+  .background_session{
+    overflow: hidden;
+    position: relative;
+    height: 750px;
+    z-index: 1;
+    width:100%;
+    img{
+      width: 100%;
+    }
+  }
+}
+// new registration //
+#new_registration{
+  background-image: url("./fondoBeo.png");
+  width: 100%;
+  .new_user_registration_form{ 
+    position: fixed;
+    height: 500px;
+    left: 50%;
+    margin-top: -250px;  
+    margin-left: -225px;
+    top: 60%;
+    z-index: 1;
+    box-sizing: border-box;
+    width: 450px;
+    form{
+      display: inline-block;
+      margin: 0 auto;
+      padding: 0;
+      width: 100%;
+      .field{
+        //float: left; 
+        margin: 0;
+        width: 100%;
+        input[type="text"], input[type="password"], input[type="email"], select{
+          background-color: transparent;
+          border: none;
+          border-bottom: 4px solid $color_text_1;
+          color: $color_text_1;
+          display: block;
+          opacity: 0.7;
+          -moz-opacity: 0.7;
+          filter:alpha(opacity=7);
+          border-radius: 2px;
+          box-sizing: border-box;
+          font-size: 26px;
+          height: 100%;
+          margin: 0 auto;
+          padding: 10px;
+          text-align: center;
+          width: 90%;
+        }
+      }
+      .actions{
+        //float: left; 
+        height: 100px;
+        margin: 0 auto;
+        padding-top: 40px ;
+        width: 162px;
+        input[type="submit"]{
+          background-color: transparent ;
+          border: 4px solid $color_text_1;
+          border-radius: 2px;
+          box-sizing: border-box;
+          color: $color_text_1;
+          cursor: pointer;
+          display: block;
+          font-size: 25px;
+          height: 100%;
+          letter-spacing: 1px;
+          margin: 0 auto;
+          text-align: center;
+          text-decoration: none;
+          width: 90%;
+        }
+        input[type="submit"]:hover{
+          border: 4px solid #BABCBC;
+          color: #BABCBC;
+          -webkit-transition: color 0.2s, border 0.2s;
+          -moz-transition: color 0.2s, border 0.2s;
+          transition: color 0.2s, border 0.2s;
+        }
+      }
+      .nav_options{
+        margin-top: 50px;
+        text-align: center;
+        a{
+          color: black;
+          font-size: 18px;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+  .background_session{
+    overflow: hidden;
+    position: relative;
+    height: 750px;
+    z-index: 1;
+    width:100%;
+    img{
+      width: 100%;
+    }
+  }
+}
+// views/users/registrations/edit
+#user_registrations_view{
+  padding-top: 60px;
+  .user_edit_registration_form{
+    position: fixed;
+      height: 300px;
+      left: 50%;
+      margin-top: -250px;  
+      margin-left: -225px;
+      top: 54%;
+      z-index: 1;
+      box-sizing: border-box;
+      width: 450px;
+      h1{
+        //padding-bottom: 40px;
+        text-align: center;
+      }
+      p{
+        padding: 20px 0 0 0;
+        text-align: center;
+        a{
+          i{ color: #4586F6; }
+        }
+      }
+      form{
+        display: inline-block;
+      margin: 0 auto;
+      padding: 0;
+      width: 100%;
+      .field{
+        //float: left; 
+        margin: 0;
+        width: 100%;
+        input[type="text"], input[type="password"], input[type="email"]{
+          background-color: transparent;
+          border: none;
+          border-bottom: 1px solid $color_text_1;
+          color: $color_text_1;
+          display: block;
+          opacity: 0.7;
+          -moz-opacity: 0.7;
+          filter:alpha(opacity=7);
+          border-radius: 2px;
+          box-sizing: border-box;
+          font-size: 20px;
+          height: 100%;
+          margin: 20px auto;
+          padding: 10px;
+          text-align: center;
+          width: 90%;
+        }
+        textarea{
+          background-color: transparent;
+          border: none;
+          border: 1px solid $color_text_1;
+          color: $color_text_1;
+          display: block;
+          opacity: 0.7;
+          -moz-opacity: 0.7;
+          filter:alpha(opacity=7);
+          border-radius: 2px;
+          box-sizing: border-box;
+          font-size: 20px;
+          height: 100%;
+          margin: 0 auto;
+          padding: 10px;
+          text-align: center;
+          width: 90%;
+        }
+      }
+      .actions{
+        //float: left; 
+            height: 100px;
+            margin: 0 auto;
+            padding-top: 40px ;
+            width: 162px;
+        input[type="submit"]{
+          background-color: transparent ;
+          border: 4px solid $color_text_1;
+          border-radius: 2px;
+          box-sizing: border-box;
+          color: $color_text_1;
+          cursor: pointer;
+          display: block;
+          font-size: 25px;
+          height: 80%;
+          letter-spacing: 1px;
+          margin: 0 auto;
+          text-align: center;
+          text-decoration: none;
+          width: 90%;
+        }
+        input[type="submit"]:hover{
+          border: 4px solid #BABCBC;
+          color: #BABCBC;
+          -webkit-transition: color 0.2s, border 0.2s;
+          -moz-transition: color 0.2s, border 0.2s;
+          transition: color 0.2s, border 0.2s;
+        }
+      }
+      .nav_options{
+        display: inline-block;
+        text-align: center;
+        width: 100%;
+        a{
+          color: black;
+          font-size: 18px;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}

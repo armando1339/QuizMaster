@@ -1,0 +1,33 @@
+<div id="user_quiz_view">
+	<div class="user_quiz_form">
+		<h1>New Quiz</h1>
+		<p>
+	      <%= link_to material_icon.dvr.md_24, users_quizzes_path, :"data-tooltip" => "All my quizzes" %>
+	      <%= link_to material_icon.account_box.md_24, user_path(current_user), :"data-tooltip" => "My account" %>
+	    </p>
+		<%= form_for(@quiz, url: users_quizzes_path,  html: {method: "post"}) do |f| %>
+			<%= f.hidden_field(:user_id, value: current_user.id) %>
+			<% if @quiz.errors.any? %>
+				<div id="error_explanation">
+					<h2><%= pluralize(@quiz.errors.count, "error") %> prohibited this quiz from being saved:
+					</h2>
+
+					<ul>
+						<% @quiz.errors.full_messages.each do |message| %>
+							<li><%= message %></li>
+						<% end %>
+					</ul>
+				</div>
+			<% end %>
+			<div class="field">
+				<%= f.text_field :name, placeholder: "Name" %>
+			</div>
+			<div class="field">
+				<%= f.text_area :description, placeholder: "Description" %>
+			</div>
+			<div class="actions">
+				<%= f.submit("Create") %>
+			</div>
+		<% end %>
+	</div>
+</div>

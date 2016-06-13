@@ -1,0 +1,28 @@
+<div id="user_quiz_view">
+  <div class="user_quiz_form">
+    <h1>New Answer</h1>
+    <p>The answers can be correct or incorrect.</p>
+    <%= form_for(@answer, url: users_quizzes_questions_answers_path, html: {method: "post"}) do |f| %>
+    	<%= f.hidden_field(:question_id, value: params[:question_id]) %>
+      <% if @answer.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@answer.errors.count, "error") %> prohibited this answer from being saved:</h2>
+          <ul>
+          <% @answer.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <div class="field">
+        <%= f.select :type, options_for_select(answer_type_options), include_blank: "Type" %>
+      </div>
+      <div class="field">
+        <%= f.text_field :contect, placeholder: 'Response content' %>
+      </div>
+      <div class="actions">
+        <%= f.submit('Add') %>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,45 @@
+<div id="users_quiz_view">
+	<div class="users_quiz">
+		<div class="users_quiz_info">
+			<h1><%= @quiz.name %></h1> 
+			<h4>
+				<%= @quiz.description %>
+			</h4>
+			<p style="padding-top: 10px;"> 
+				<strong>Quiz id:</strong>
+				<%= @quiz.id %>
+			</p> 
+			<p>
+				<%= link_to material_icon.control_point.md_24, new_users_quizzes_question_path(:quiz_id => @quiz), :"data-tooltip" => "Add question" %>
+				<%= link_to material_icon.dvr.md_24, users_quizzes_path, :"data-tooltip" => "All my quizzes" %>
+				<%= link_to material_icon.account_box.md_24, user_path(current_user), :"data-tooltip" => "My account" %>
+				<%= link_to material_icon.mode_edit.md_24, edit_users_quiz_path(@quiz), :"data-tooltip" => "Edit quiz" %>
+				<%= link_to material_icon.delete_forever.md_24, users_quiz_path(@quiz), method: :delete, data: { confirm: 'Are you sure?' }, :"data-tooltip" => "Destroy quiz" %>
+		    </p>
+		</div>
+		<div class="users_quiz_questions">
+			<h3>List of quiz questions</h3>
+			<p>(Add <%= link_to "questions", new_users_quizzes_question_path(:quiz_id => @quiz) %> to this quiz and then responses for this questions.)</p>
+			<table>
+				<thead>
+					<tr>
+						<th>Question</th>
+						<th>Created at</th>
+						<th colspan="3">Options</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @quiz.questions.order('id DESC').each do |quiz| %>
+						<tr>
+							<td><%= quiz.contect %></td>
+							<td><%= quiz.created_at.strftime("%d - %m - %Y") %></td>
+							<td><%= link_to material_icon.open_in_new.md_24, users_quizzes_question_path(quiz), :"data-tooltip" => "Show answers" %></td>
+							<td><%= link_to material_icon.mode_edit.md_24, edit_users_quizzes_question_path(:id => quiz, :quiz_id => @quiz), :"data-tooltip" => "Edit question" %></td>
+							<td><%= link_to material_icon.delete_forever.md_24, users_quizzes_question_path(:id => quiz, :quiz_id => @quiz), method: :delete, data: { confirm: 'Are you sure?' }, :"data-tooltip" => "Destroy question" %></td>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

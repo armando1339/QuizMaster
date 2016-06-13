@@ -1,0 +1,33 @@
+<div id="users_quizzes_view">
+  <div class="users_quizzes_table">
+
+    <h1>Listing all quizzes</h1>
+    <h4>Choose a quiz and test your knowledge. Enjoy it!</h4>
+    <p>
+      <%= link_to material_icon.history.md_24, new_users_quiz_path, :"data-tooltip" => "My history of quizzes" %>
+      <%= link_to material_icon.account_box.md_24, user_path(current_user), :"data-tooltip" => "My account" %>
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Quiz from</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th colspan="1"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @quizzes.each do |quiz| %>
+          <tr>
+            <td><%= quiz.user.email %></td>
+            <td><%= quiz.name %></td>
+            <td><%= quiz.description %></td>
+            <td><%= link_to material_icon.play_circle_outline.md_24, "", :"data-tooltip" => "Start quiz" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>QuizMaster</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+	<% flash.each do |name, msg| %>
+    <div class="notice-alert-session">
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+    </div>
+  <% end %>
+
+
+ 	<div id="inside_main_wrapper">
+ 		<%= render 'general_sections/header' %>
+    <%= yield %>
+	</div>
+
+</body>
+</html>

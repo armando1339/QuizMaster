@@ -1,0 +1,34 @@
+<div id="users_quizzes_view">
+  <div class="users_quizzes_table">
+    <h1>Listing my quizzes</h1>
+    <h4>Create all quizzes you want and build them with questions and answers.</h4>
+    <p>
+      <%= link_to material_icon.control_point.md_24, new_users_quiz_path, :"data-tooltip" => "Add quiz" %>
+      <%= link_to material_icon.account_box.md_24, user_path(current_user), :"data-tooltip" => "My account" %>
+    </p>
+    <table>
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Created at</th>
+          <th colspan="3">Options</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @quizzes.each do |quiz| %>
+          <tr>
+            <td><%= quiz.id %></td>
+            <td><%= quiz.name %></td>
+            <td class="description"><%= quiz.description %></td>
+            <td><%= quiz.created_at.strftime("%d - %m - %Y") %></td>
+            <td><%= link_to material_icon.open_in_new.md_24, users_quiz_path(quiz), :"data-tooltip" => "Show quiz" %></td>
+            <td><%= link_to material_icon.mode_edit.md_24, edit_users_quiz_path(quiz), :"data-tooltip" => "Edit quiz" %></td>
+            <td><%= link_to material_icon.delete_forever.md_24, users_quiz_path(quiz), method: :delete, data: { confirm: 'Are you sure?' }, :"data-tooltip" => "Destroy quiz" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

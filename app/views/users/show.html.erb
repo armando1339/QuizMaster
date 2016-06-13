@@ -1,0 +1,34 @@
+<div id="user_view">
+	<div class="user_wrapper">
+		<h1>Welcome to your account!</h1>
+		<div class="user_info">
+			<p>
+			  <strong>Id:</strong>
+			  <%= @user.id %>
+			</p>
+			<p>
+			  <strong>Type:</strong>
+			  <%= @user.type %>
+			</p>
+			<p>
+			  <strong>Email:</strong>
+			  <%= @user.email %>
+			</p>
+			<p>
+			  <strong>Number of quizzes:</strong>
+			  <%= @user.quizzes.all.count %>
+			</p>
+		</div>
+		<div class="user_options">
+			<% if current_user.type == "Teacher"%>
+				<%= link_to material_icon.content_paste.md_24, new_users_quiz_path, :"data-tooltip" => "Create quiz" %>
+				<%= link_to material_icon.dvr.md_24, users_quizzes_path, :"data-tooltip" => "All my quizzes" %>
+			<% else %>
+				<%= link_to material_icon.history.md_24, new_users_quiz_path, :"data-tooltip" => "My history of quizzes" %>
+				<%= link_to material_icon.dvr.md_24, quizzes_path, :"data-tooltip" => "List all quizzes" %>
+			<% end %>
+			<%= link_to material_icon.vpn_key.md_24, edit_user_registration_path(@user), :"data-tooltip" => "Change password" %>
+			<%= link_to material_icon.exit_to_app.md_24, destroy_user_session_path, method: :delete, :"data-tooltip" => "log out" %>
+		</div>
+	</div>
+</div>

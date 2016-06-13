@@ -1,0 +1,47 @@
+<div id="users_quiz_question_view">
+	<div class="users_quiz_question">
+		<div class="users_quiz_question_info">
+			<h1><%= @question.contect %></h1>  
+			<p>
+				<strong>From quiz:</strong>
+				<%= @question.quiz.name %>
+			</p>
+			<p>
+				<strong>Quiz id:</strong>
+				<%= @question.quiz.id %>
+			</p>
+			<p class="options">
+		      <%= link_to material_icon.control_point.md_24, new_users_quizzes_questions_answer_path(:question_id => @question), :"data-tooltip" => "Add answer" %>
+		      <%= link_to material_icon.arrow_back.md_24, users_quiz_path(@question.quiz.id), :"data-tooltip" => "Back to quiz" %>
+		      <%= link_to material_icon.dvr.md_24, users_quizzes_path, :"data-tooltip" => "All my quizzes" %>
+		      <%= link_to material_icon.account_box.md_24, user_path(current_user), :"data-tooltip" => "My account" %>
+		      <%= link_to material_icon.mode_edit.md_24, edit_users_quizzes_question_path(:id => @question, :quiz_id => @question.quiz.id), :"data-tooltip" => "Edit question" %>
+		      <%= link_to material_icon.delete_forever.md_24, users_quizzes_question_path(:id => @question, :quiz_id => @question.quiz.id ), method: :delete, data: { confirm: 'Are you sure?' }, :"data-tooltip" => "Destroy question" %>
+		    </p>
+		</div>
+		<div class="users_quiz_question_answers">
+			<h3>Listing answers for this question</h3>
+			<p>(Add <%= link_to "answres", new_users_quizzes_questions_answer_path(:question_id => @question) %> to this question. In cases wherein the answer is/contains a number, please add one answer with number and another in characters. )</p>
+			<table>
+				<thead>
+					<tr>
+						<th>Type</th>
+						<th>Answer</th>
+						<th>Created at</th>
+						<th colspan="1">Options</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @question.answers.order('id DESC').each do |quiz| %>
+						<tr>
+							<td><%= quiz.type %></td>
+							<td><%= quiz.contect %></td>
+							<td><%= quiz.created_at.strftime("%d - %m - %Y") %></td>
+							<td><%= link_to material_icon.delete_forever.md_24, users_quizzes_questions_answer_path(quiz), method: :delete, data: { confirm: 'Are you sure?' }, :"data-tooltip" => "Destroy answer" %></td>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

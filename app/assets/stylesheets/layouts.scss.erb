@@ -1,3 +1,4 @@
+//= depend_on_asset "fondoBeo.png"
 // general styles //
 // Color variables ->
 $background-color_1:    white;
@@ -98,13 +99,13 @@ body{
 	font-family: 'font_1';	
 }
 #main_wrapper{
-  background-image: url("./fondoBeo.png");
+  background-image: url('<%= asset_path("fondoBeo.png") %>');
   background-color: $background_color_2;
   min-height: 20000px;
   width: 100%;
 }
 #inside_main_wrapper{
-  //background-image: url("./fondoBeo.png");
+  //background-image: url('<%= asset_path("fondoBeo.png") %>');
   background-color: $background_color_2;
   min-height: 1200px;
   width: 100%; 
@@ -138,7 +139,7 @@ body{
 }
 // new session //
 #new_session{
-  background-image: url("./fondoBeo.png");
+  background-image: url('<%= asset_path("fondoBeo.png") %>');
   width: 100%;
   .new_user_session_form{ 
     position: fixed;
@@ -233,7 +234,7 @@ body{
 }
 // new registration //
 #new_registration{
-  background-image: url("./fondoBeo.png");
+  background-image: url('<%= asset_path("fondoBeo.png") %>');
   width: 100%;
   .new_user_registration_form{ 
     position: fixed;

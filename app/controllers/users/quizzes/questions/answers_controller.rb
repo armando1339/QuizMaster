@@ -27,14 +27,29 @@ class Users::Quizzes::Questions::AnswersController < ApplicationController
   # POST /answers
   # POST /answers.json
   def create
-    @answer = Answer.new(answer_params)
+    if params['correct'] or params['incorrect']
+      @answer = Answer.new(answer_type_params)
+    else
+      @answer = Answer.new(answer_params)
+    end
 
     respond_to do |format|
       if @answer.save
-        format.html { redirect_to users_quizzes_question_path(params[:answer][:question_id]), notice: 'Answer was successfully created.' }
+        if params['correct'] or params['incorrect']
+          format.html { redirect_to users_quizzes_question_path(answer_type_params[:question_id]), notice: 'Answer was successfully created.' }
+        else
+          format.html { redirect_to users_quizzes_question_path(params[:answer][:question_id]), notice: 'Answer was successfully created.' }
+        end
         format.json { render :show, status: :created, location: @answer }
       else
-        format.html { render :new }
+        format.html { 
+          if params['correct'] or params['incorrect']
+            @question = Question.find(answer_type_params[:question_id])
+          else
+            @question = Question.find(params[:answer][:question_id])
+          end
+          render :new 
+        }
         format.json { render json: @answer.errors, status: :unprocessable_entity }
       end
     end

@@ -2,21 +2,35 @@
 	<div class="user_quiz_form">
 		<h1>New Question</h1>
 		<p>
-	      <%= link_to material_icon.arrow_back.md_24, users_quiz_path(params[:quiz_id]), :"data-tooltip" => "Back to quiz" %>
+			<% if @quiz %>
+				<%= link_to material_icon.arrow_back.md_24, users_quiz_path(@quiz.id), :"data-tooltip" => "Back to quiz" %>
+			<% else %>
+				<%= link_to material_icon.arrow_back.md_24, users_quiz_path(params[:quiz_id]), :"data-tooltip" => "Back to quiz" %>
+			<% end %>
 	      <%= link_to material_icon.account_box.md_24, user_path(current_user), :"data-tooltip" => "My account" %>
 	    </p>
 		<%= form_for(@question, url: users_quizzes_questions_path,  html: {method: "post"}) do |f| %>
-			<%= f.hidden_field(:quiz_id, value: params[:quiz_id]) %>
-			<% if @question.errors.any? %>
-				<div id="error_explanation">
-					<h2><%= pluralize(@question.errors.count, "error") %> prohibited this question from being saved:</h2>
-					<ul>
-						<% @question.errors.full_messages.each do |message| %>
-							<li><%= message %></li>
-						<% end %>
-					</ul>
-				</div>
+			<% if @quiz %>
+				<%= f.hidden_field(:quiz_id, value: @quiz.id) %>
+			<% else %>
+				<%= f.hidden_field(:quiz_id, value: params[:quiz_id]) %>
 			<% end %>
+
+			<% if @question.errors.any? %>
+		        <div class="notice-alert-session">
+		          <p class="notice">
+		            <div id="error_explanation">
+		              <h2><%= pluralize(@question.errors.count, "error") %> prohibited this question from being saved:</h2>
+		              <ul>
+		              <% @question.errors.full_messages.each do |message| %>
+		                <li style="list-style: none;"><%= message %></li>
+		              <% end %>
+		              </ul>
+		            </div>
+		          </p>
+		        </div> 
+		    <% end %>
+
 			<div class="field">
 				<%= f.text_field :contect, placeholder: "Write the content" %>
 			</div>

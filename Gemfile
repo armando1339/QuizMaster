@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 ## => Add for me!
+# client validation
+gem 'client_side_validations'
 # spiner for aplication 
 gem 'nprogress-rails'
 # icons

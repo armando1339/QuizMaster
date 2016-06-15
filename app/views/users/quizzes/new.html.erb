@@ -7,23 +7,27 @@
 	    </p>
 		<%= form_for(@quiz, url: users_quizzes_path,  html: {method: "post"}) do |f| %>
 			<%= f.hidden_field(:user_id, value: current_user.id) %>
-			<% if @quiz.errors.any? %>
-				<div id="error_explanation">
-					<h2><%= pluralize(@quiz.errors.count, "error") %> prohibited this quiz from being saved:
-					</h2>
 
-					<ul>
-						<% @quiz.errors.full_messages.each do |message| %>
-							<li><%= message %></li>
-						<% end %>
-					</ul>
-				</div>
-			<% end %>
+			<% if @quiz.errors.any? %>
+		        <div class="notice-alert-session">
+		          <p class="notice">
+		            <div id="error_explanation">
+		              <h2><%= pluralize(@quiz.errors.count, "error") %> prohibited this quiz from being saved:</h2>
+		              <ul>
+		              <% @quiz.errors.full_messages.each do |message| %>
+		                <li style="list-style: none;"><%= message %></li>
+		              <% end %>
+		              </ul>
+		            </div>
+		          </p>
+		        </div>
+	      	<% end %>
+
 			<div class="field">
 				<%= f.text_field :name, placeholder: "Name" %>
 			</div>
 			<div class="field">
-				<%= f.text_area :description, placeholder: "Description" %>
+				<%= f.text_area :description, placeholder: "Instructions" %>
 			</div>
 			<div class="actions">
 				<%= f.submit("Create") %>

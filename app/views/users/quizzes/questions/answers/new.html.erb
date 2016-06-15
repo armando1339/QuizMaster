@@ -1,18 +1,40 @@
 <div id="user_quiz_view">
   <div class="user_quiz_form">
     <h1>New Answer</h1>
+
     <p>The answers can be correct or incorrect.</p>
+
+    <p>
+      <% if @question %>
+        <%= link_to material_icon.arrow_back.md_24, users_quizzes_question_path(@question.id), :"data-tooltip" => "Back to quiz" %>
+      <% else %>
+        <%= link_to material_icon.arrow_back.md_24, users_quizzes_question_path(params[:question_id]), :"data-tooltip" => "Back to quiz" %>
+      <% end %>
+      <%= link_to material_icon.account_box.md_24, user_path(current_user), :"data-tooltip" => "My account" %>
+    </p>
+
+
     <%= form_for(@answer, url: users_quizzes_questions_answers_path, html: {method: "post"}) do |f| %>
-    	<%= f.hidden_field(:question_id, value: params[:question_id]) %>
+      <% if @question %>
+        <%= f.hidden_field(:question_id, value: @question.id) %>
+      <% else %>
+        <%= f.hidden_field(:question_id, value: params[:question_id]) %>
+      <% end %>
+
       <% if @answer.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(@answer.errors.count, "error") %> prohibited this answer from being saved:</h2>
-          <ul>
-          <% @answer.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-          </ul>
-        </div>
+        <div class="notice-alert-session">
+          <p class="notice">
+            <div id="error_explanation">
+              <h2><%= pluralize(@answer.errors.count, "error") %> prohibited this answer from being saved:</h2>
+              <ul>
+              <% @answer.errors.full_messages.each do |message| %>
+                <li style="list-style: none;"><%= message %></li>
+              <% end %>
+              </ul>
+            </div>
+          </p>
+      </div>
+        
       <% end %>
       <div class="field">
         <%= f.select :type, options_for_select(answer_type_options), include_blank: "Type" %>

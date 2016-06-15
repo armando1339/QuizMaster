@@ -16,3 +16,4 @@
 //= require_tree .
 //= require nprogress
 //= require nprogress-turbolinks
+//= require rails.validations

@@ -1,0 +1,18 @@
+<div id="user_view">
+	<div class="user_wrapper">
+		<h1>Welcome to this Quiz!</h1>
+		<div class="user_info">
+			<p style="font-size: 20px;">
+			  <strong>Name of quiz:</strong>
+			  <%= @quiz.name %>
+			</p>
+			<p>
+			  <strong>Instructions:</strong>
+			  <%= @quiz.description %>
+			</p>
+		</div>
+		<div class="actions_play">
+        <%= button_to "Start", answer_question_play_now_index_path, method: :get %>
+      </div>
+	</div>
+</div>

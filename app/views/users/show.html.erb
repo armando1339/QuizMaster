@@ -14,17 +14,24 @@
 			  <strong>Email:</strong>
 			  <%= @user.email %>
 			</p>
-			<p>
-			  <strong>Number of quizzes:</strong>
-			  <%= @user.quizzes.all.count %>
-			</p>
+			<% if current_user.type == "Teacher"%>
+				<p>
+				  <strong>Number of quizzes:</strong>
+				  <%= @user.quizzes.all.count %>
+				</p>
+			<% else %>
+				<p>
+				  <strong>Number of quizzes conducted:</strong>
+				  <%= @user.history_of_quizzes.all.count %>
+				</p>
+			<% end %>
 		</div>
 		<div class="user_options">
 			<% if current_user.type == "Teacher"%>
 				<%= link_to material_icon.content_paste.md_24, new_users_quiz_path, :"data-tooltip" => "Create quiz" %>
 				<%= link_to material_icon.dvr.md_24, users_quizzes_path, :"data-tooltip" => "All my quizzes" %>
 			<% else %>
-				<%= link_to material_icon.history.md_24, new_users_quiz_path, :"data-tooltip" => "My history of quizzes" %>
+				<%= link_to material_icon.history.md_24, users_history_of_quizzes_path, :"data-tooltip" => "My history of quizzes" %>
 				<%= link_to material_icon.dvr.md_24, quizzes_path, :"data-tooltip" => "List all quizzes" %>
 			<% end %>
 			<%= link_to material_icon.vpn_key.md_24, edit_user_registration_path(@user), :"data-tooltip" => "Change password" %>

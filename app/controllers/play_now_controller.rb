@@ -1,0 +1,53 @@
+class PlayNowController < ApplicationController
+	before_action :authenticate_user!
+	layout 'inside_layout'
+
+	def start_quiz
+		@quiz = Quiz.find(params[:id])
+		session[:quiz_loaded] = @quiz
+		session[:questions] = @quiz.questions
+		session[:number_of_question] = 0
+		session[:number_of_correct_answers] = 0
+		@quiz
+	end
+
+	def answer_question
+		if session[:questions][session[:number_of_question].to_i] == nil
+			redirect_to result_of_quiz_play_now_index_path
+		else
+			@question = Question.find(session[:questions][session[:number_of_question].to_i]["id"])
+		end
+	end
+
+	def evaluate_response 
+		if params["answer_id"]
+			@question = Question.find(session[:questions][session[:number_of_question].to_i]["id"])
+			@answer = @question.answers.find(params["answer_id"])
+			if @answer.type == 'Correct'
+				session[:number_of_correct_answers] += 1
+			end
+			session[:number_of_question] += 1
+			redirect_to answer_question_play_now_index_path
+		else
+			redirect_to :back, notice: 'Please choose a answer.'
+		end
+	end
+
+	def result_of_quiz
+		@history_of_quiz = HistoryOfQuiz.new(:user_id => current_user.id, :quiz_id => session[:quiz_loaded]["id"].to_i, :name => session[:quiz_loaded]["name"], :number_of_question => session[:questions].count, :number_of_correct_answers => session[:number_of_correct_answers])
+		@history_of_quiz.save
+		# build result
+		@result = Hash.new
+		@result[:message] = "The quiz is finished"
+		@result[:quiz] = session[:quiz_loaded]
+		@result[:number_of_questions] = session[:questions].count
+		@result[:number_of_correct_answers] = session[:number_of_correct_answers]
+		# clear session
+		session.delete(session[:quiz_loaded])
+		session.delete(session[:questions])
+		session.delete(session[:number_of_question])
+		session.delete(session[:number_of_correct_answers])
+		# result content
+		@result
+	end
+end

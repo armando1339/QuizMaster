@@ -3,7 +3,15 @@
   <div class="user_edit_registration_form">
     <h1>Edit password</h1>
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-      <%= devise_error_messages! %>
+    
+      <% if resource.errors.any? %>
+        <div class="notice-alert-session">
+          <p class="notice">
+            <%= devise_error_messages! %>
+          </p>
+        </div>
+      <% end %>
+
       <div class="field">
         <%= f.email_field :email, autofocus: true, placeholder: "Email", disabled: true %>
       </div>

@@ -1,0 +1,26 @@
+<div id="user_view">
+	<div class="user_wrapper">
+		<h1><%= @result[:message] %></h1>
+		<div class="user_info">
+			<p style="font-size: 20px; padding: 5px 0;">
+			  <strong>Quiz id:</strong>
+			  <%= @result[:quiz]["id"] %>
+			</p>
+			<p style="font-size: 20px; padding: 5px 0;">
+			  <strong>Name of quiz:</strong>
+			  <%= @result[:quiz]["name"] %>
+			</p>
+			<p style="color: #4586F6; padding: 5px 0;">
+			  <strong>Number of questions:</strong>
+			  <%= @result[:number_of_questions] %>
+			</p>
+			<p style="color: #4586F6; padding: 5px 0;">
+			  <strong>Number of correct answers:</strong>
+			  <%= @result[:number_of_correct_answers] %>
+			</p>
+		</div>
+		<div class="actions_play">
+        <%= button_to "Finish", users_history_of_quizzes_path, method: :get %>
+      </div>
+	</div>
+</div>

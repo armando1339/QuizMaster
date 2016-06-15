@@ -34,7 +34,10 @@ class Users::Quizzes::QuestionsController < ApplicationController
         format.html { redirect_to users_quiz_path(params[:question][:quiz_id]), notice: 'Question was successfully created.' }
         format.json { render :show, status: :created, location: @question }
       else
-        format.html { render :new }
+        format.html { 
+          @quiz = Quiz.find(params[:question][:quiz_id])
+          render :new 
+        }
         format.json { render json: @question.errors, status: :unprocessable_entity }
       end
     end
@@ -48,7 +51,10 @@ class Users::Quizzes::QuestionsController < ApplicationController
         format.html { redirect_to users_quiz_path(params[:question][:quiz_id]), notice: 'Question was successfully updated.' }
         format.json { render :show, status: :ok, location: @question }
       else
-        format.html { render :edit }
+        format.html { 
+          @quiz = Quiz.find(question_params[:quiz_id])
+          render :edit 
+        }
         format.json { render json: @question.errors, status: :unprocessable_entity }
       end
     end

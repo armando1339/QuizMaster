@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160608172620) do
+ActiveRecord::Schema.define(version: 20160615020138) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,18 @@ ActiveRecord::Schema.define(version: 20160608172620) do
   end
 
   add_index "answers", ["question_id"], name: "index_answers_on_question_id", using: :btree
+
+  create_table "history_of_quizzes", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "quiz_id"
+    t.string   "name"
+    t.string   "number_of_question"
+    t.string   "number_of_correct_answers"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  add_index "history_of_quizzes", ["user_id"], name: "index_history_of_quizzes_on_user_id", using: :btree
 
   create_table "questions", force: :cascade do |t|
     t.string   "contect"
@@ -65,6 +77,7 @@ ActiveRecord::Schema.define(version: 20160608172620) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "answers", "questions"
+  add_foreign_key "history_of_quizzes", "users"
   add_foreign_key "questions", "quizzes"
   add_foreign_key "quizzes", "users"
 end

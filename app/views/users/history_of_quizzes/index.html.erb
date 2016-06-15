@@ -1,0 +1,35 @@
+<div id="users_quizzes_view">
+  <div class="users_quizzes_table">
+
+    <h1>My history of quizzes</h1>
+    <h4>All my holdings in QuizMaster. Hurrah!</h4>
+    <p>
+      <%= link_to material_icon.dvr.md_24, quizzes_path, :"data-tooltip" => "List all quizzes" %>
+      <%= link_to material_icon.account_box.md_24, user_path(current_user), :"data-tooltip" => "My account" %>
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Quiz id</th>
+          <th>Name</th>
+          <th>Number of question</th>
+          <th>Number of correct answers</th>
+          <th>Was played on:</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @history_of_quizzes.order('created_at DESC').each do |h| %>
+          <tr>
+            <td><%= h.quiz_id %></td>
+            <td><%= h.name %></td>
+            <td><%= h.number_of_question %></td>
+            <td><%= h.number_of_correct_answers %></td>
+            <td><%= h.created_at %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

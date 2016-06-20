@@ -25,16 +25,16 @@ class PlayNowController < ApplicationController
 		if params["answer"]
 			@question = Question.find(session[:questions][session[:number_of_question].to_i]["id"])
 			@answer = @question.answers.find_by('type = ?', 'Correct')
-			if params["answer"].downcase.squeeze.strip == "0" or params["answer"].downcase.squeeze.strip == "zero"
-				if @answer.contect.downcase.squeeze.strip == params["answer"].downcase.squeeze.strip or @answer.contect.to_i.humanize.downcase.squeeze.strip == params["answer"].downcase.squeeze.strip
+			if params["answer"].downcase.squeeze.strip.gsub(/-/, ' ') == "0" or params["answer"].downcase.squeeze.strip.gsub(/-/, ' ') == "zero"
+				if @answer.contect.downcase.squeeze.strip.gsub(/-/, ' ') == params["answer"].downcase.squeeze.strip.gsub(/-/, ' ') or @answer.contect.to_i.humanize.downcase.squeeze.strip.gsub(/-/, ' ') == params["answer"].downcase.squeeze.strip.gsub(/-/, ' ')
 					session[:number_of_correct_answers] += 1
 				end
 				session[:number_of_question] += 1
 				redirect_to answer_question_play_now_index_path
 			elsif params["answer"].blank?
 				redirect_to :back, notice: 'Please type an answer.'
-			elsif params["answer"].downcase.squeeze.strip != "0" or params["answer"].downcase.squeeze.strip != "zero"
-				if @answer.contect.downcase.squeeze.strip == params["answer"].downcase.squeeze.strip or @answer.contect.to_i.humanize.downcase.squeeze.strip == params["answer"].downcase.squeeze.strip
+			elsif params["answer"].downcase.squeeze.strip.gsub(/-/, ' ') != "0" or params["answer"].downcase.squeeze.strip.gsub(/-/, ' ') != "zero"
+				if @answer.contect.downcase.squeeze.strip.gsub(/-/, ' ') == params["answer"].downcase.squeeze.strip.gsub(/-/, ' ') or @answer.contect.to_i.humanize.downcase.squeeze.strip.gsub(/-/, ' ') == params["answer"].downcase.squeeze.strip.gsub(/-/, ' ')
 					session[:number_of_correct_answers] += 1
 				end
 				session[:number_of_question] += 1

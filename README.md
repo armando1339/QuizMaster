@@ -1,5 +1,12 @@
 # QuizMaster
 
+###Tecnical
+
+- rvm 1.27.0
+- ruby 2.1.7p400
+- Rails 4.2.5
+- Bundler 1.11.2
+
 How to run the app
 
 - Clone this repo.

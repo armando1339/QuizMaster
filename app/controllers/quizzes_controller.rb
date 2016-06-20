@@ -25,7 +25,7 @@ class QuizzesController < ApplicationController
     @quiz = Quiz.new
   end
 
-  # GET /quizzes/1/edit
+  # GET /quizzes/1/edit 
   def edit
   end
 

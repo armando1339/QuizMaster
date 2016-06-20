@@ -76,6 +76,47 @@ $color_text_1:          black;
             }
             
           }
+          .text_field{
+            //float: left; 
+            margin: 0;
+            width: 100%;
+            input[type="text"], input[type="password"], select{
+              background-color: transparent;
+              border: none;
+              border-bottom: 1px solid $color_text_1;
+              color: $color_text_1;
+              display: block;
+              opacity: 0.7;
+              -moz-opacity: 0.7;
+              filter:alpha(opacity=7);
+              border-radius: 2px;
+              box-sizing: border-box;
+              font-size: 20px;
+              height: 100%;
+              margin: 20px auto;
+              padding: 10px;
+              text-align: center;
+              width: 90%;
+            }
+            textarea{
+              background-color: transparent;
+              border: none;
+              border: 1px solid $color_text_1;
+              color: $color_text_1;
+              display: block;
+              opacity: 0.7;
+              -moz-opacity: 0.7;
+              filter:alpha(opacity=7);
+              border-radius: 2px;
+              box-sizing: border-box;
+              font-size: 20px;
+              height: 100%;
+              margin: 0 auto;
+              padding: 10px;
+              text-align: center;
+              width: 90%;
+            }
+          }
           p{
             box-sizing: border-box;
             display: inline-block;

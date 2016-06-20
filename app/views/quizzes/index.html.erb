@@ -8,26 +8,13 @@
       <%= link_to material_icon.account_box.md_24, user_path(current_user), :"data-tooltip" => "My account" %>
     </p>
 
-    <table>
-      <thead>
-        <tr>
-          <th>Quiz from</th>
-          <th>Name</th>
-          <th>Description</th>
-          <th colspan="1">Options</th>
-        </tr>
-      </thead>
+    <%= form_for_filterrific @filterrific do |f| %>
+      <div class="searcher">
+        <%= f.text_field(:search_query, class: 'filterrific-periodically-observed', placeholder: "Search", autofocus: false) %>
+      </div>
+    <% end %>
 
-      <tbody>
-        <% @quizzes.each do |quiz| %>
-          <tr>
-            <td><%= quiz.user.email %></td>
-            <td><%= quiz.name %></td>
-            <td><%= quiz.description %></td>
-            <td><%= link_to material_icon.play_circle_outline.md_24, start_quiz_play_now_index_path(:id => quiz), :"data-tooltip" => "Start quiz" %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+    <%= render(partial: 'quizzes/list', locals: { quizzes: @quizzes }) %>
+
   </div>
 </div>

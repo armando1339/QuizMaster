@@ -1,23 +1,43 @@
-<div id="user_play_quiz_view">
-	<div class="user_play_quiz_wrapper">
-		<h1><%= @question.contect %></h1>
-		<div class="form_for">
-			<%= form_tag(evaluate_response_play_now_index_path, method: :post) do %>
-				<% @question.answers.order("RANDOM()").each do |a| %>
-					<div class="response_area">
-						<div class="radio_check">
-							<%= radio_button_tag :answer_id, a.id %>
-							<label>✓</label> 
+<% if session[:difficulty] == "Easy" %>
+	<div id="user_play_quiz_view">
+		<div class="user_play_quiz_wrapper">
+			<h1><%= @question.contect %></h1>
+			<div class="form_for">
+				<%= form_tag(evaluate_response_play_now_index_path, method: :post) do %>
+					<% @question.answers.order("RANDOM()").each do |a| %>
+						<div class="response_area">
+							<div class="radio_check">
+								<%= radio_button_tag :answer_id, a.id %>
+								<label>✓</label> 
+							</div>
+							<p>
+								<%= "#{a.contect}" %>
+							</p>
 						</div>
-						<p>
-							<%= "#{a.contect}" %>
-						</p>
-					</div>
-				<% end %>
-				<div class="actions_play">
-			    	<%= submit_tag('Next >')%>
-			    </div>
-		    <% end %>
+					<% end %>
+					<div class="actions_play">
+				    	<%= submit_tag('Next >')%>
+				    </div>
+			    <% end %>
+			</div>
 		</div>
 	</div>
-</div>
+<% else %>
+	<div id="user_play_quiz_view">
+		<div class="user_play_quiz_wrapper">
+			<h1><%= @question.contect %></h1>
+			<div class="form_for">
+				<%= form_tag(evaluate_response_play_now_index_path, method: :post) do %>
+					<div class="response_area">
+						<div class="text_field">
+							<%= text_field_tag :answer, nil, placeholder: 'Type your answer here!' %>
+						</div>
+					</div>
+					<div class="actions_play">
+				    	<%= submit_tag('Next >')%>
+				    </div>
+			    <% end %>
+			</div>
+		</div>
+	</div>
+<% end %>

@@ -12,6 +12,7 @@ class PlayNowController < ApplicationController
 	end
 
 	def answer_question
+		session[:difficulty] = params[:difficulty] if params[:difficulty]
 		if session[:questions][session[:number_of_question].to_i] == nil
 			redirect_to result_of_quiz_play_now_index_path
 		else
@@ -20,16 +21,38 @@ class PlayNowController < ApplicationController
 	end
 
 	def evaluate_response 
-		if params["answer_id"]
+		# string evaluation
+		if params["answer"]
 			@question = Question.find(session[:questions][session[:number_of_question].to_i]["id"])
-			@answer = @question.answers.find(params["answer_id"])
-			if @answer.type == 'Correct'
-				session[:number_of_correct_answers] += 1
-			end
-			session[:number_of_question] += 1
-			redirect_to answer_question_play_now_index_path
+			@answer = @question.answers.find_by('type = ?', 'Correct')
+			if params["answer"].downcase.squeeze.strip == "0" or params["answer"].downcase.squeeze.strip == "zero"
+				if @answer.contect.downcase.squeeze.strip == params["answer"].downcase.squeeze.strip or @answer.contect.to_i.humanize.downcase.squeeze.strip == params["answer"].downcase.squeeze.strip
+					session[:number_of_correct_answers] += 1
+				end
+				session[:number_of_question] += 1
+				redirect_to answer_question_play_now_index_path
+			elsif params["answer"].blank?
+				redirect_to :back, notice: 'Please type an answer.'
+			elsif params["answer"].downcase.squeeze.strip != "0" or params["answer"].downcase.squeeze.strip != "zero"
+				if @answer.contect.downcase.squeeze.strip == params["answer"].downcase.squeeze.strip or @answer.contect.to_i.humanize.downcase.squeeze.strip == params["answer"].downcase.squeeze.strip
+					session[:number_of_correct_answers] += 1
+				end
+				session[:number_of_question] += 1
+				redirect_to answer_question_play_now_index_path
+			end	
+		# check evaluation
 		else
-			redirect_to :back, notice: 'Please choose a answer.'
+			if params["answer_id"]
+				@question = Question.find(session[:questions][session[:number_of_question].to_i]["id"])
+				@answer = @question.answers.find(params["answer_id"])
+				if @answer.type == 'Correct'
+					session[:number_of_correct_answers] += 1
+				end
+				session[:number_of_question] += 1
+				redirect_to answer_question_play_now_index_path
+			else
+				redirect_to :back, notice: 'Please choose an answer.'
+			end
 		end
 	end
 
@@ -47,6 +70,7 @@ class PlayNowController < ApplicationController
 		session.delete(session[:questions])
 		session.delete(session[:number_of_question])
 		session.delete(session[:number_of_correct_answers])
+		session.delete(session[:difficulty])
 		# result content
 		@result
 	end

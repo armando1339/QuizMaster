@@ -6,7 +6,13 @@ class QuizzesController < ApplicationController
   # GET /quizzes
   # GET /quizzes.json
   def index
-    @quizzes = Quiz.all
+    # @quizzes = Quiz.all
+    @filterrific = initialize_filterrific(Quiz,params[:filterrific])
+    @quizzes = @filterrific.find.page(params[:page])
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # GET /quizzes/1

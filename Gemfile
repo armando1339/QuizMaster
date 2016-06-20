@@ -1,7 +1,14 @@
 source 'https://rubygems.org'
 ## => Add for me!
-# client validation
-gem 'client_side_validations'
+# filt data
+gem 'filterrific'
+gem 'will_paginate', '~> 3.0.5'
+# number to string
+gem 'humanize'
+# Test code
+group :development, :test do
+  gem 'rspec-rails'
+end
 # spiner for aplication 
 gem 'nprogress-rails'
 # icons

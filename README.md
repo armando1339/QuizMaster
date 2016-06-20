@@ -2,7 +2,7 @@
 
 This is a demo Rails app for Quipper (technical exam).
 
-###Tecnical
+###Technical
 
 - rvm 1.27.0
 - ruby 2.1.7p400

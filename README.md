@@ -1,6 +1,6 @@
 # QuizMaster
 
-This is a demo Rails app for Quipper technical exam.
+This is a demo Rails app for Quipper (technical exam).
 
 ###Tecnical
 

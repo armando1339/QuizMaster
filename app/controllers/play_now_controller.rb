@@ -1,5 +1,5 @@
 class PlayNowController < ApplicationController
-	before_action :authenticate_user!
+	#before_action :authenticate_user!
 	layout 'inside_layout'
 
 	# this method start the quiz and all variables needed

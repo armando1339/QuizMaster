@@ -17,11 +17,6 @@ RSpec.describe User, type: :model do
 		expect(user.save).to be false
 	end
 
-	it "has a validation for type presence" do 
-		user = User.new(:email => 'armando1339@gmail.com', :password => 'ableton10', :type => "Sister")
-		expect(user.save).to be true
-	end
-
 	it "has a association with Quiz model" do 
 		user = User.reflect_on_association(:quizzes)
     	expect(user.macro) == :has_many

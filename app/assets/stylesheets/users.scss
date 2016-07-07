@@ -140,7 +140,7 @@ $color_text_1:          black;
 }
 // -> view/users/quizzes/index
 #users_quizzes_view{
-	padding-top: 60px;
+	padding: 60px 0 100px 0;
 	.users_quizzes_table{
 		padding-top: 80px;
 	    box-sizing: border-box;
@@ -172,7 +172,7 @@ $color_text_1:          black;
 	    		text-align: center;
 	    		tr{
 	    			td{
-	    				border-bottom: 1px solid white;
+	    				border-bottom: 1px dotted black;
 	    				padding: 5px;
 	    				a{
 	    					i{ 

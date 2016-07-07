@@ -1,8 +1,18 @@
 class Answer < ActiveRecord::Base
-	include ActiveModel::Validations
 	belongs_to	:question
-	validates 	:type, :contect, presence: true
+	validates 	:type, :contect, :question_id, presence: true
 	validate 	:only_one_correct_answer
+
+	class << self
+		def subclasses_array_options
+			@answer_type_options = Array.new
+			@types = Answer.subclasses
+			@types.each do |t|
+				@answer_type_options << t.to_s
+			end 
+			@answer_type_options
+		end
+	end
 
 	private
 
@@ -25,8 +35,5 @@ class Answer < ActiveRecord::Base
 		end
 end
 
-class Correct < Answer
-end 
-
-class Incorrect < Answer
-end
+class Correct < Answer; end 
+class Incorrect < Answer; end

@@ -4,12 +4,6 @@ class Users::Quizzes::QuestionsController < ApplicationController
   before_action :set_question, only: [:show, :edit, :update, :destroy]
   layout 'inside_layout'
 
-  # GET /questions
-  # GET /questions.json
-  def index
-    @questions = Question.all
-  end
-
   # GET /questions/1
   # GET /questions/1.json
   def show

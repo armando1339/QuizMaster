@@ -6,8 +6,8 @@ class ApplicationController < ActionController::Base
 	include AnswersHelper
 
 	def authorized_user
-    redirect_to user_path(current_user) unless authorized_user? current_user.type
-  end
+    	redirect_to user_path(current_user) unless authorized_user? current_user.type
+  	end
 
 	def authorized_user? user
 	    @authorized_use = case user
@@ -16,5 +16,5 @@ class ApplicationController < ActionController::Base
 	      else
 	        false                           
 	    end 
-	  end
+	end
 end

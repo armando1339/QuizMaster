@@ -8,6 +8,7 @@ gem 'humanize'
 # Test code
 group :development, :test do
   gem 'rspec-rails'
+  gem 'capybara'
 end
 # spiner for aplication 
 gem 'nprogress-rails'

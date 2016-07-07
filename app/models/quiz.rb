@@ -1,7 +1,7 @@
 class Quiz < ActiveRecord::Base
 	belongs_to	:user
 	has_many 	:questions, dependent: :destroy
-	validates 	:name, :description, presence: true
+	validates 	:name, :description, :user_id, presence: true
 
 	filterrific(
 	  default_filter_params: { sorted_by: 'created_at' },

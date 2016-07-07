@@ -8,10 +8,10 @@
 			</p> 
 			<p>
 				<%= link_to material_icon.control_point.md_24, new_users_quizzes_question_path(:quiz_id => @quiz), :"data-tooltip" => "Add question" %>
-				<%= link_to material_icon.dvr.md_24, users_quizzes_path, :"data-tooltip" => "All my quizzes" %>
-				<%= link_to material_icon.account_box.md_24, user_path(current_user), :"data-tooltip" => "My account" %>
 				<%= link_to material_icon.mode_edit.md_24, edit_users_quiz_path(@quiz), :"data-tooltip" => "Edit quiz" %>
 				<%= link_to material_icon.delete_forever.md_24, users_quiz_path(@quiz), method: :delete, data: { confirm: 'Are you sure?' }, :"data-tooltip" => "Destroy quiz" %>
+				<%= link_to material_icon.dvr.md_24, users_quizzes_path, :"data-tooltip" => "All my quizzes" %>
+				<%= link_to material_icon.account_box.md_24, user_path(current_user), :"data-tooltip" => "My account" %>
 		    </p>
 		</div>
 		<div class="users_quiz_questions">

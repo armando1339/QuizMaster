@@ -1,7 +1,4 @@
 source 'https://rubygems.org'
-
-# some to proof git funtionality
-
 ## => Add for me!
 # filt data
 gem 'filterrific'

@@ -1,8 +1,8 @@
 # QuizMaster
 
-This is a demo Rails app for Quipper (technical exam).
+This is a demo Rails app for Quipper.
 
-###Technical
+Technical
 
 - RVM 1.27.0
 - Ruby 2.1.7p400
@@ -10,7 +10,7 @@ This is a demo Rails app for Quipper (technical exam).
 - RubyGems 2.4.8
 - Bundler 1.11.2
 
-###How to run the app
+How to run the app
 
 - Clone this repo.
 - Satisfy RVM if you use it.
